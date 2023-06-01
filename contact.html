@@ -17,56 +17,6 @@
             // https://dashboard.emailjs.com/admin/account
             emailjs.init('U8BvS9ayDzYgitTz1');
         })();
-        
-        function sendEmail()
-
-       {
-
-        let name = document.getElementById("name").value;
-
-        let email = document.getElementById("email").value;
-
-        let message = document.getElementById("subject").value;
-
-        if(name == "" || email == "" || message == "" || !email.includes("@"))
-
-        {
-
-            return;
-
-        }
-
-        var params = {
-
-            from_name: name,
-
-            email_id: email,
-
-            message: message
-
-        }
-
-        emailjs.send("service_vhm177f","template_zffrvcq", params).then(function(res)
-
-        {
-
-            document.getElementById("alert-box").style.scale = "1";
-
-        });
-
-       }
-
-       function closeAlert()
-
-       {
-
-            document.getElementById("alert-box").style.scale = "0";
-
-            document.getElementById("contact-form").reset();
-
-       }
-
-       
     </script>
 
     <!-- Inline style -->
@@ -88,9 +38,9 @@
             padding-top: 40px;
         }
 
-        #alert-box{
+        .alert-box{
             width: 360px;
-            padding: 12.5px 30px 25px;
+            padding: 35px 30px 25px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -110,12 +60,15 @@
             z-index: 1;
             box-shadow: 0 0 50px 50px rgba(0, 0, 0, .25);
             text-align: center;
-            scale: 0;
             transform-origin: 0 0;
-            transition: scale .25s ease-out;
+            visibility: hidden;
         }
 
-        #alert-box #tick-mark{
+        #alert-form{
+            padding-top: 45px;
+        }
+
+        .alert-box #tick-mark{
             position: absolute;
             left: 50%;
             top: 0%;
@@ -130,17 +83,17 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
         }
 
-        #alert-box h2{
-            margin: 30px 0 10px;
+        .alert-box h2{
+            margin: 10px 0 10px;
             font-weight: 500;
         }
 
-        #alert-box p{
+        .alert-box p{
             font-size: small;
             margin-bottom: 25px;
         }
 
-        #alert-box #close-alert{
+        .alert-box #close-alert{
             width: 100%;
             padding: 8px 0;
             border: 0;
@@ -154,7 +107,7 @@
             box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
         }
 
-        #alert-box #close-alert:hover, #alert-box #close-alert:active{
+        .alert-box #close-alert:hover, .alert-box #close-alert:active{
             background-color: #9124ff;
         }
 
@@ -166,7 +119,6 @@
             -ms-flex-direction: column;
             align-items: center;
             margin-right: 30px;
-            animation: anim .9s;
         }
 
         #form-holder h4 {
@@ -201,17 +153,6 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, .1);
         }
 
-        @keyframes anim{
-            0%{
-                scale: 0;
-            }
-            90%{
-                scale: 1.05;
-            }
-            100%{
-                scale: 1;
-            }
-        }
 
         #contact-form::before{
             content: 'Contact Me';
@@ -250,6 +191,7 @@
             justify-content: flex-start;
             margin: 10px 0;
             width: 100%;
+            position: relative;
         }
 
         #contact-form .tf-holder label {
@@ -311,7 +253,6 @@
 
         #contact-wrapper {
             width: max-content;
-            animation: anim .9s;
         }
 
         .contact-holder {
@@ -410,7 +351,7 @@
                 /* background-color: transparent; */
             }
 
-            #alert-box{
+            .alert-box{
                 max-width: 92%;
             }
 
@@ -447,10 +388,16 @@
     <!-- Header code for all the page -->
     <div id="load-wrapper"><div id="loader">Loading</div></div>
 
-    <div id="alert-box">
+    <div id="alert-mail" class="alert-box">
         <h2>Thank you!</h2>
-        <i id="tick-mark" class="fa-solid fa-check fa-xl" style="color: #ffffff;"></i>        <p>Message sent successfully!. You will be replied soon.</p>
-        <button id="close-alert" onclick="closeAlert()">OK</button>
+        <i id="tick-mark" class="fa-solid fa-check fa-xl" style="color: #ffffff;"></i>
+        <p>Message sent successfully!. You will be replied soon.</p>
+        <button id="close-alert" onclick="closeAlert('alert-mail')">OK</button>
+    </div>
+    <div id="alert-form" class="alert-box">
+        <i id="tick-mark" class="fa-solid fa-check fa-xl" style="color: #ffffff;"></i>
+        <p id="alert-form-msg">Form fields cannot be empty!</p>
+        <button id="close-alert" onclick="closeAlert('alert-form')">OK</button>
     </div>
 
     <header id="header">
@@ -474,21 +421,21 @@
             <!-- Your content goes here -->
 
             <div id="form-holder" onsubmit="event.preventDefault();">
-                <form id="contact-form" autocomplete="off">
+                <div id="contact-form">
                     <div class="tf-holder">
                         <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" spellcheck="false" required>
+                        <input type="text" id="name" name="name" spellcheck="false" autocomplete="off">
                     </div>
                     <div class="tf-holder">
                         <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" spellcheck="false" required>
+                        <input type="email" id="email" name="email" spellcheck="false" autocomplete="off">
                     </div>
                     <div class="tf-holder">
                         <label for="subject">Subject</label>
-                        <textarea name="subject" id="subject" cols="30" rows="4" spellcheck="false" required></textarea>
+                        <textarea name="subject" id="subject" cols="30" rows="4" spellcheck="false" autocomplete="off"></textarea>
                     </div>
                     <input type="submit" value="Send Email" class="submit btn" onclick="sendEmail()">
-                </form>
+                </div>
             </div>
 
             <div id="contact-wrapper">
@@ -529,7 +476,62 @@
             </div>
         </footer>
     </div>
-    
-</body>
+    <script type="text/javascript">
 
+        var alertFormMsg;
+
+        window.addEventListener("load", function()
+        {
+            alertFormMsg = document.getElementById("alert-form-msg");
+        });
+
+    function sendEmail() {
+
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let message = document.getElementById("subject").value;
+    
+        if (name == "" || email == "" || message == "")
+        {
+            alertFormMsg.innerText = "Form fields cannot be empty!";
+            document.getElementById("alert-form").style.visibility = "visible";
+            return;
+        }
+        else if(!email.includes("@"))
+        {
+            alertFormMsg.innerText = "Please enter valid email id!";
+            document.getElementById("alert-form").style.visibility = "visible";
+            return
+        }
+    
+        var params = {
+            from_name: name,
+            email_id: email,
+            message: message,
+        };
+    
+        emailjs.send("service_vhm177f", "template_zffrvcq", params).then(res => {
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("subject").value = "";
+            document.getElementById("alert-mail").style.visibility = "visible";
+        })
+        .catch( err => console.log(err));
+    
+    }
+    
+    function closeAlert(alert) {
+        
+        if(alert == "alert-mail")
+        {
+            document.getElementById("alert-mail").style.visibility = "hidden";
+        }
+        else if(alert == "alert-form"){
+            document.getElementById("alert-form").style.visibility = "hidden";    
+        }
+    
+    }
+
+    </script>
+</body>
 </html>
