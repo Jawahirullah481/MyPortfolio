@@ -3,6 +3,8 @@ var header, projectmenu;
 window.addEventListener("load", function(){
     header = document.getElementById("header");
     projectmenu = document.getElementById("sidebar"); 
+    
+    if(document.title != "My Projects")
     document.getElementById("load-wrapper").style.visibility = "hidden";
 });
 
