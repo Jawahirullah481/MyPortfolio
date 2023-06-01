@@ -385,6 +385,14 @@ for mobiles only
         -ms-flex-direction: column;
         justify-content: flex-start;
     }
+    
+    footer div h4{
+        font-size: 18.5px;
+    }
+
+    footer div p, footer div i, footer div a{
+        font-size: 17.5px;
+    }
 
 }
 
