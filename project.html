@@ -66,12 +66,15 @@
         position: relative;
         margin: 0 40px 70px;
         font-weight: 400;
-        opacity: 0;
-        scale: 0;
+
+        /* opacity: 0;
+        scale: 0; 
         transition: opacity 1s ease-out, scale .9s ease-out;
         -webkit-transition: opacity 1s ease-out, scale .9s ease-out;
         -moz-transition: opacity 1s ease-out, scale .9s ease-out;
-        -o-transition: opacity 1s ease-out, scale .9s ease-out;
+        -o-transition: opacity 1s ease-out, scale .9s ease-out; */
+
+
         background-color: #f1f1ff;
         box-shadow: 0 3px 4px rgba(0, 0, 0, .25);
 
@@ -269,8 +272,7 @@ async function addProjects()
             .then(data =>  createProjectCards(data));
 
     document.getElementById("load-wrapper").style.visibility = "hidden";
-    cards = document.querySelectorAll(".card");
-    checkCards(); 
+    // checkCards(); 
 }
 
 function createProjectCards(data) {
@@ -354,14 +356,11 @@ function createProjectCards(data) {
         });
     };
 
-function initialize()
+
+window.addEventListener("load", function()
 {
     addProjects();
-    cards = document.querySelectorAll(".card");
-    window.addEventListener("scroll", checkCards);
-}
-
-initialize();
+});
 
 
 </script>
