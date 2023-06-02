@@ -18,7 +18,7 @@
             justify-content: center;
             width: 100%;
             height: calc(100vh - 70px);
-            background-color: rgb(237, 237, 255);
+            background-color: #ededff;
             position: relative;
         }
 
@@ -35,7 +35,6 @@
             scale: 1;
             padding: 15px;
             border-radius: 20px;
-
         }
 
         #content-holder {
@@ -59,7 +58,8 @@
 
         #content-holder #main-content-right {
             width: 25%;
-            min-width: 140px;
+            height: fit-content;
+            min-width: 135px;
         }
 
         #content-holder #main-content-left h1 {
@@ -90,12 +90,10 @@
 
         #content-holder #main-content-right img {
             display: block;
-            width: 140px;
-            min-width: 140px;
+            width: 135px;
+            min-width: 135px;
             height: auto;
             margin: auto;
-/*             border: 3.5px solid #7740fa;
-            border-radius: 90px 40% 40% 90px; */
         }
 
         #about-holder #skills-holder {
@@ -170,8 +168,8 @@
 
             #about-holder {
                 max-width: 480px;
-                padding-left: 3px;
-                padding-right: 3px;
+                padding-left: 5px;
+                padding-right: 5px;
             }
 
             #about-holder #content-holder {
@@ -194,6 +192,10 @@
                 font-size: 18px;
             }
 
+            #content-holder #main-content-left #contact-items a{
+                font-size: 34px;
+            }
+
             #about-holder #skills-holder {
                 flex-direction: column;
                 -ms-flex-direction: column;
@@ -202,7 +204,7 @@
 
             #about-holder #skills-holder h4 {
                 width: fit-content;
-                font-size: 18px;
+                font-size: 22px;
                 margin-bottom: 10px;
                 margin-top: 5px;
             }
@@ -212,11 +214,11 @@
             }
 
             #about-holder #skills-holder #skills .icons {
-                margin: 5px 7.5px 10px 7.5px;
+                margin: 5px 8px 10px 8px;
                 border-radius: 50%;
-                width: 38px;
-                min-width: 38px;
-                height: 38px;
+                width: 40px;
+                min-width: 40px;
+                height: 40px;
             }
 
         }
