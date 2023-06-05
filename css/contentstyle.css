@@ -25,8 +25,9 @@ section{
 section h2{
     margin-bottom: 12.5px;
     font-size: 28px;
-    color: #6c60dc;
-    color: #6b5dff;
+/*     color: #6b5dff; */
+    font-weight: 500;
+    color: rgb(48, 49, 95);
 }
 
 section p, section ul li{
