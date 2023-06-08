@@ -388,8 +388,8 @@ for mobiles only
     
     footer div h4{
         font-size: 18.5px;
-        text-transform: uppercase;
         letter-spacing: 1px;
+        font-weight: 500;
     }
 
     footer div p, footer div a{
