@@ -1,16 +1,13 @@
 #sidebar{
     width: 195px;
     min-width: 195px;
-    max-width: 360px;
+    max-width: 320px;
     height: 100vh;
     position: sticky;
     top: 0;
     float: left;
     padding-bottom: 5px;
-    background-color: #d9d9ff;
     overflow-y: scroll;
-    
-    /* ------------------- */
     background-color: #c2bcff;;
 }
 
@@ -33,6 +30,7 @@
     margin-bottom: 5px;
     font-weight: 600;
     color: darkslategrey;
+
 }
 
 #sidebar .view{
@@ -129,13 +127,10 @@ nav .fa-list-ul{
 @media only screen and (max-width : 600px){
     #sidebar{
         width: 320px;
+        max-width: 320px;
         position: fixed;
         top: 0;
         left: -110%;
-        transition: left .12s ease-in-out;
-        -webkit-transition: left .12s ease-in-out;
-        -moz-transition: left .12s ease-in-out;
-        -o-transition: left .12s ease-in-out;
         box-shadow: 0px 0px 0 800px rgba(32, 32, 32, 0.525);
         z-index: 1;
         visibility: hidden;
