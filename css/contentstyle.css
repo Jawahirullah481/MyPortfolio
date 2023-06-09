@@ -177,8 +177,8 @@ code::-webkit-scrollbar{
 
 @media only screen and (max-width : 600px) {
     #holder{
-       padding-right: 20px !important;
-       padding-left: 20px !important;
+       padding-right: 17px !important;
+       padding-left: 17px !important;
     }
 
     #preview-wrapper{
