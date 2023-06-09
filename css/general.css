@@ -229,7 +229,7 @@ header .my-resume:active{
 
 nav{
     width: 100%;
-    height: 56px;
+    height: 50px;
     position: fixed;
     top: 0;
     color: white;
@@ -242,7 +242,7 @@ nav{
 
 nav g svg{
     position: absolute;
-    height: 40%;
+    height: 43%;
     width: max-content;
     top: 50%;
     left: 50%;
@@ -379,16 +379,6 @@ for mobiles only
         padding: 30px 15px 60px 15px;
     }
 
-    footer{
-        flex-direction: column;
-        -ms-flex-direction: column;
-        justify-content: flex-start;
-    }
-    
-    footer div h4{
-       
-    }
-
     footer div p, footer div a{
         font-size: 16px;
     }
@@ -399,3 +389,11 @@ for mobiles only
 
 }
 
+@media only screen and (max-width: 470px)
+{
+    footer{
+        flex-direction: column;
+        -ms-flex-direction: column;
+        justify-content: flex-start;
+    }
+}
