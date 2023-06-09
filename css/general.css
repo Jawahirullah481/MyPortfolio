@@ -353,18 +353,20 @@ for mobiles only
     header .menu{
         flex-direction: column;
         -ms-flex-direction: column;
-        margin-bottom: 22px;
+        margin-bottom: 20px;
     }
 
     header .menu li{
-        margin: 22px 0;
-        font-size: 24px;
+        margin: 20px 0;
+        font-size: 22px;
+        font-weight: 500;
     } 
 
     header .my-resume{
         padding: 5px 20px;
         margin-left: 0;
-        font-size: 22px;
+        font-size: 20px;
+        font-weight: 500;
     }
 
     nav{
