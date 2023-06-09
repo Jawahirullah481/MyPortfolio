@@ -294,7 +294,7 @@ footer div{
 
 footer div h4{
     font-size: 17.5px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.025rem;
     margin-bottom: 4px;
 }
@@ -312,7 +312,6 @@ footer div p, footer div i, footer div a{
 }
 
 footer div i{
-    font-size: x-large;
     margin-right: 10px;   
 }
 
@@ -387,17 +386,15 @@ for mobiles only
     }
     
     footer div h4{
-        font-size: 18.5px;
-        letter-spacing: 1px;
-        font-weight: 500;
+       
     }
 
     footer div p, footer div a{
-        font-size: 17.5px;
+        font-size: 16px;
     }
     
     footer div i{
-        font-size: 30px;
+        margin-top: 4px;
     }
 
 }
