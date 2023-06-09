@@ -399,4 +399,8 @@ for mobiles only
         -ms-flex-direction: column;
         justify-content: flex-start;
     }
+    
+    footer div{
+        margin-left: 15px;
+    }
 }
