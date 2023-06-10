@@ -1,0 +1,1663 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>WhatsApp</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="screensstyle.css">
+    <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+:root {
+
+    --top: rgb(0, 128, 105);
+    --view: white;
+    --headers: white;
+    --headings: rgb(171, 213, 205);
+    --contact-name: #101617;
+    --thumb: white;
+    --msg-color: #646474;
+    --msg-color-alt: #727a7f;
+    --edit-pencil-bg: rgba(230, 230, 230, 0.7);
+    --edit-pencil: #222;
+    --green-t: rgb(0, 168, 132);
+
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    font-family: sans-serif;
+    background-color: var(--view);
+}
+
+#wrapper {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100%;
+    background-color: transparent;
+    margin: auto;
+}
+
+#popup{
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 8px 20px 14px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    border-radius: 15px;
+    color: black;
+    font-size: 18px;
+    visibility: hidden;
+}
+
+#popup .icon-back{
+    transform: translateY(6px);
+}
+
+header {
+    width: 100%;
+    height: 61px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    background-color: var(--top);
+    padding: 0 5px 0 15px;
+    color: var(--headers);
+}
+
+header .icon-search, header .icon-camera, header .icon-more{
+    display: inline-block;
+    margin-left: 15px;
+    font-size: 22px;
+}
+
+header #whatsapp-name {
+    position: absolute;
+    left: 20px;
+    margin-left: 0;
+    font-size: 19px;
+    font-weight: 500;
+}
+
+header .icon-more {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-left: 15px;
+}
+
+header .icon-search {
+    margin-left: 25px;
+}
+
+#mode {
+    width: 120%;
+    height: 120%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+#headings {
+    width: 100%;
+    height: 47.5px;
+    background-color: var(--top);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    color: var(--headings);
+}
+
+#headings span {
+    transform: translateY(15%);
+}
+
+#headings span:not(.icon-community) {
+    width: 22%;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+
+#headings .icon-community {
+    font-size: 26px;
+}
+
+#headings span:nth-child(2) {
+    color: var(--thumb);
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: inherit;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+
+#view-holder {
+    width: 100vw;
+    max-width: 100vw;
+
+    /* here height is 105px less than 100vh.
+    Because, header height is 60px and headings height is 47.5px
+    */
+
+    height: calc(100vh - 105px);
+    background-color: var(--view);
+    overflow: scroll;
+    display: flex;
+
+    /*
+     scroll snap type is for smooth transition(scroll) of views
+     */
+    scroll-snap-type: x mandatory;
+
+    /* 
+     We are rotating view holdler and view to move the scrollbar from bottom to top
+    */
+    transform: rotateX(180deg);
+    scroll-behavior: smooth;
+}
+
+.view {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 100vw;
+    transform: rotateX(-180deg);
+    scroll-snap-align: start;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    cursor: pointer;
+    /* box-shadow: inset 0 1px 2px rgba(150, 150, 150, .5); */
+}
+
+#view-holder::-webkit-scrollbar {
+    background-color: var(--top);
+    height: 3px;
+    width: 100%;
+}
+
+#view-holder::-webkit-scrollbar-thumb {
+    background-color: var(--thumb);
+}
+
+#view-holder::-webkit-scrollbar-track-piece {
+
+    /* 
+     This margin left property prevents scrollbar from move to community
+    */
+    margin-left: 52.5px;
+}
+
+#view-holder::-webkit-scrollbar:vertical {
+    background-color: transparent;
+    height: 3px;
+}
+
+
+#view-holder::-webkit-scrollbar-thumb:vertical {
+    background-color: transparent;
+}
+
+#view-holder::-webkit-scrollbar-track-piece:vertical {
+    background-color: transparent;
+}
+
+.view::-webkit-scrollbar{
+    display: none;
+}
+
+.view .encryption-msg{
+    text-align: center;
+    font-size: 12.5px;
+    padding: 10px 10px; 
+    color: rgb(90, 100, 105);
+    margin: 5px 0 15px 0;
+}
+
+.view .encryption-msg .green{
+    color: var(--green-t);
+}
+
+
+.box {
+    width: 100%;
+    height: 74px;
+    position: relative;
+}
+
+.box span {
+    display: inline-block;
+}
+
+.prof {
+    width: 46px;
+    height: 46px;
+    display: block;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0.8);
+    position: relative;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgVNVAyN3qIQWnz4tStdKwCHnOb5eeV65eKw&usqp=CAU');
+    background-size: 65px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+
+.nm-wrap {
+    display: inline-block;
+    width: 75%;
+    height: 80%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-45%);
+    left: 72px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nm-wrap .name {
+    margin-bottom: 4px;
+    font-size: 16.5px;
+    font-weight: 500;
+    color: var(--contact-name);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nm-wrap .msg {
+    width: 100%;
+    white-space: nowrap;
+}
+
+.nm-wrap .msg .msgcont {
+    width: 92.5%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--msg-color);
+    font-size: 15px;
+    letter-spacing: 0.15px;
+    color: var(--msg-color-alt);
+    font-weight: 400;
+}
+
+.nm-wrap .msg .msg-wrap{
+    white-space: normal;
+   text-overflow: clip;
+}
+
+.chat-box .msg-time {
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    font-size: 12px;
+    color: var(--msg-color-alt);
+    font-weight: 400;
+    /* background-color: red; */
+}
+
+#call-link{
+    height: 85px;
+}
+
+#call-link .prof{
+    background: var(--green-t);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#call-link .icon-link{
+    font-size: 28px;
+    transform: rotate(-45deg);
+    color: white;
+}
+
+.call-box .msg .call-arr {
+    transform: translateY(0%);
+    font-size: 18px;
+    color: var(--green-t);
+    font-weight: 200;
+}
+
+.call-box .msg .red-arr{
+    color: red;
+}
+
+.call-box .ic-call {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 19px;
+    color: var(--green-t);
+}
+
+
+.status-box .prof {
+    opacity: 1;
+    position: relative;
+}
+
+
+.txt-status {
+    color: var(--msg-color);
+    font-size: 15.5px;
+    font-weight: 500;
+    margin: 10px 15px;
+}
+
+#ur-status #add-status-holder{
+    width: 80px;
+    height: 80px;
+    background-color: var(--view);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+#ur-status #add-status{
+    width: 22px;
+    height: 22px;
+    color: white;
+    background-color: var(--green-t);
+    border-radius: 50%;
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.35px solid var(--view); 
+}
+
+#status .viewed .prof, #status .recent .prof{
+    width: 46px;
+    height: 46px;
+    left: 15px;
+}
+
+#status .status-prof-border{
+    width: 54px;
+    height: 54px;
+    position: absolute;
+    background-color: var(--view);
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+}
+
+#status .recent .status-prof-border{
+    border-color: var(--green-t);
+}
+
+#status .viewed .status-prof-border{
+    border-color: rgb(178, 178, 178);
+    border-color: #a5a5a5;
+}
+
+.fixed {
+
+    border-radius: 50%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.35);
+}
+
+.fixed:after {
+    font-family: 'Material icons';
+    display: inline-block;
+    font-size: 22px;
+    color: white;
+}
+
+.bottom {
+    width: 51px;
+    height: 51px;
+    background-color: rgb(0, 168, 132);
+    bottom: 30px;
+    right: 20px;
+}
+
+
+#more-chat:after {
+    content: 'chat';
+}
+
+
+#more-status {
+    visibility: hidden;
+}
+
+#more-status:after {
+    font-family: 'Material icons round';
+    content: 'camera_alt';
+}
+
+
+#more-call {
+    visibility: hidden;
+}
+
+#more-call:after {
+    content: 'add_ic_call';
+}
+
+#edit {
+    width: 43px;
+    height: 43px;
+    background-color: var(--edit-pencil-bg);
+    right: 24.25px;
+    bottom: 110px;
+    visibility: hidden;
+}
+
+#edit:after {
+    content: 'edit';
+    color: var(--edit-pencil);
+    font-size: 22px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color:#555;
+    width:100vw;
+    height:100vh;
+}
+
+
+#chat-wrapper, #status-wrapper, #call-wrapper{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    position: fixed;
+    top: 0;
+}
+
+#chat-wrapper{
+    background-color: #EBE5DE;
+    background-image: url("https://w0.peakpx.com/wallpaper/154/372/HD-wallpaper-telegram-background-whatsapp-creative-android-pattern-texture-abstract.jpg");
+    background-size: cover;
+}
+
+
+#chat-wrapper .top, #status-wrapper .top{
+    width:100vw;
+    height:60px;
+    background-color:#35897E;
+    position:fixed;
+    top:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 0 6px 0 8px;
+}
+
+#chat-wrapper .top .top-left, #chat-wrapper .top .top-right, #status-wrapper .top .top-left, #status-wrapper .top .top-right{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#chat-wrapper .top .top-left img, #status-wrapper .top .top-left img{
+    margin-right: 10px;
+}
+
+#chat-wrapper .top .top-left .icon-back, #status-wrapper .top .top-left .icon-back{
+    margin-right: 4px;
+}
+
+#chat-wrapper .top .top-right *, #status-wrapper .top .top-right *{
+    margin-left: 20px;
+    font-size: 23px;
+}
+
+#chat-wrapper .top .top-right span:first-child{
+    margin-left: 0;
+}
+
+#chat-wrapper .top .top-left img, #status-wrapper .top .top-left img{
+    width: 42px;
+    height: 42px;
+    background-color: yellow;
+    border-radius: 50%;
+}
+
+#chat-wrapper .top span, #status-wrapper .top span{
+    color: white;
+    font-size: 23px;
+}
+
+#chat-wrapper .top .contact .contact-name, #status-wrapper .top .contact .contact-name{
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+}
+
+#chat-wrapper .top .contact .last-seen, #status-wrapper .top .contact .last-seen{
+    color: white;
+    font-size: 11px;
+    transform: translateY(1px);
+}
+
+/*---------------------------------*/
+
+#chat-wrapper footer{
+    width: 100vw;
+    height:60px;
+    position: fixed;
+    bottom: 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 0 4px;
+    z-index: 2;
+    background-image: url("https://w0.peakpx.com/wallpaper/154/372/HD-wallpaper-telegram-background-whatsapp-creative-android-pattern-texture-abstract.jpg");
+}
+
+#chat-wrapper #textfield{
+    height:45px;
+    width: calc(100vw - 58px);
+    background-color: white;
+    border-radius:25px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 5px;
+}
+
+#chat-wrapper #textfield .icon-attach, #chat-wrapper #textfield .icon-payment, #textfield .icon-camera{
+    margin-left: 5px;
+}
+
+#chat-wrapper #textfield input[type="text"]
+{
+    width: calc(100% - 155px);
+    height:100%;
+    border:none;
+    background-color:transparent;
+    font-size: 1.1rem;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#chat-wrapper #textfield input[type="text"]:focus{
+    outline:none;
+    caret-color: var(--green-t);
+}
+
+#chat-wrapper #textfield span{
+    width: 35px;
+    height:35px;
+    border-radius:50%;
+    display:inline-flex;
+    color:#7c7c7c;
+    font-size:1.475rem;
+    align-items:center;
+    justify-content:center;
+}
+
+#chat-wrapper #textfield .material-icons-round:hover{
+    background-color:rgba(50,50,50,.25);
+}
+
+#chat-wrapper #textfield .icon-attach{
+    transform:rotate(-40deg);
+}
+
+#chat-wrapper #mic-holder{
+    width:45px;
+    height:45px;
+    background-color:rgb(0,168,132);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white; 
+}
+
+/* ---------------------------- */
+
+#chat-wrapper #chat-holder{
+    overflow:scroll;   
+    padding-top: 5px;
+    padding-bottom: 60px;
+    position: relative;
+    top: 60px;
+    height: calc(100vh - 120px);
+    max-height: calc(100vh - 120px);
+    width: 100vw;
+}
+
+#chat-wrapper #chat-holder::-webkit-scrollbar{
+    display: none;
+}
+
+#chat-wrapper #chat-holder .encryption-msg p{
+    background-color: rgb(255, 237, 213);
+    text-align: center;
+    margin: 10px 25px;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+    color:rgb(54, 60, 60);
+    margin-bottom: 10px;
+}
+
+#chat-wrapper #chat-holder .message-date{
+    text-align: center;
+    width: fit-content;
+    margin: 10px auto;
+    padding: 5.5px 10px;
+    background-color: white;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #636363;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+    white-space: nowrap;
+}
+/* --------------------------- */
+
+#chat-wrapper .msg{
+    position: relative;
+    max-width: 80vw;
+    min-height: 60px;
+    width: max-content;
+    min-width: 105px;
+    padding: 8px 12px;
+    padding-bottom: 28px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    font-size: 17px;
+    line-height: 150%;
+    color: black;
+}
+
+#chat-wrapper .msg.right{
+    margin-left: auto;
+    margin-right: 10px;
+    border-top-right-radius: 0;
+    background-color: #E0F6CA;
+}
+
+#chat-wrapper .msg.right .msg-content{
+    /* text-align: right; */
+    display: block;
+}
+
+#chat-wrapper .msg.left{
+    margin-left: 10px;
+    border-top-left-radius: 0;
+    background-color: white;
+}
+
+#chat-wrapper .first-msg{
+    margin-bottom: 10px;
+}
+
+#chat-wrapper .msg.left .icon-seen{
+    display: none;
+}
+
+#chat-wrapper .time-seen{
+    font-size: 14px;
+    display: block;
+    position: absolute;
+    right: 8px;
+    bottom: 2px;
+    white-space: nowrap;
+}
+
+#chat-wrapper .time{
+    color: rgb(97, 97, 97);
+}
+
+#chat-wrapper .icon-seen{
+    font-size: 18px;
+    position: relative;
+    transform: translateY(4px);
+    color: #4FB6EC;
+}
+
+
+/* --------style for status------------- */
+
+#status-wrapper{
+    background-color: black;
+    position: relative;
+}
+
+#status-wrapper #statusProgress {
+    width: 100%;
+    background-color: grey;
+  }
+  
+#status-wrapper #statusBar {
+    width: 1%;
+    height: 3px;
+    background-color: white;
+  }
+
+#status-wrapper .top{
+    background-color: transparent;
+    height: 65px;
+    z-index: 1;
+}
+
+#status-wrapper .top .name{
+    color: white;
+}
+
+#status-wrapper .status-img{
+    display: block;
+    width: 100vw;
+    height: 100vw;
+    max-height: 100vh;
+    max-width: 80vh;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#status-wrapper .reply{
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#status-wrapper .reply *{
+    color: white;
+}
+
+/* ---------style for call----------*/
+
+#call-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #091219;
+    background-image: url("https://w0.peakpx.com/wallpaper/580/650/HD-wallpaper-whatsapp-bg-dark-background.jpg");
+    background-size: cover;
+}
+
+#call-wrapper .encryption-msg{
+    color: #838c92;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+#call-wrapper img{
+    width: 80px;
+    height: 80px;
+    display: block;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+#call-wrapper h2{
+    font-size: 26px;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 15px;
+}
+
+#call-wrapper p{
+    color: #838c92;
+}
+
+#call-wrapper .bottom{
+    width: 100vw;
+    background-color: rgb(119, 122, 122);
+    /* height: 100px; */
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #273443;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 55px 0;
+}
+
+#call-wrapper .bottom *{
+    color: white;
+    font-size: 32px;
+    display: inline-block;
+}
+
+#call-wrapper .bottom .icon-expand{
+    position: absolute;
+    top: 3px;
+    color: #838c92;
+}
+
+#call-wrapper .bottom .call-icons-holder{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#call-wrapper .bottom .call-icons-holder span{
+    font-size: 27px;
+}
+
+#call-wrapper .bottom .call-icons-holder .icon-video-call{
+    color: #838c92;
+}
+
+#call-wrapper .bottom .call-icons-holder .icon-call-end{
+    background-color: red;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+#wrapper{
+    /* display: none; */
+}
+
+#chat-wrapper{
+    display: none;
+}
+
+#status-wrapper{
+    display: none;
+}
+
+#call-wrapper{
+    display: none;
+}
+
+.icon-back, .icon-call-end, .icon-mic{
+    cursor: pointer;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <header>
+            <span id="whatsapp-name">WhatsApp</span>
+            <span class="material-icons-outlined icon-camera">local_see</span>
+            <span class="material-icons icon-search">search</span>
+            <span class="material-icons icon-more">more_vert</span>
+        </header>
+        <div id="headings">
+            <span class="material-icons-round icon-community">groups</span>
+            <span><a href="#chat">chats</a></span>
+            <span><a href="#status">status</a></span>
+            <span><a href="#call">calls</a></span>
+        </div>
+        <div id="view-holder">
+            <div class="view" id="chat">
+                
+                <div class="box chat-box">
+                    <img src="https://www.theportugalnews.com/uploads/news/Cristiano_Ronaldo_2018__cropped_.jpg" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Ronaldo</span>
+                        <span class="msg"><span class="msgcont">Hi</span> </span>
+                    </div>
+                    <span class="msg-time">3:30 am</span>
+                </div>
+                <div class="box chat-box">
+                    <img src="https://i.pinimg.com/474x/9e/16/72/9e1672a073dad608b11386d2755614e0.jpg" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Elon musk</span>
+                        <span class="msg"> <span class="msgcont">Nice code. Would you like to join my company?</span> </span>
+                    </div>
+                    <span class="msg-time">9:41 am</span>
+                </div>
+                <div class="box chat-box">
+                    <img src="https://i.pinimg.com/474x/8a/ee/42/8aee4246ebb7f4f231b66053184d7c01.jpg" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">De villiers</span>
+                        <span class="msg"> <span class="msgcont">Hi dude</span> </span>
+                    </div>
+                    <span class="msg-time">12:00 pm</span>
+                </div>
+                <div class="box chat-box">
+                    <img src="https://thumbs.dreamstime.com/b/roger-federer-centre-court-wimbledon-playing-winning-roger-federerl-wimbledon-152934699.jpg" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Kiruttans</span>
+                        <span class="msg"> <span class="msgcont">Super code man</span> </span>
+                    </div>
+                    <span class="msg-time">3:31 pm</span>
+                </div>
+                <div class="box chat-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSXYTroIPD4qJZ-5N8Te8jNj2iGTh2I7GblV1-Wvczzg&usqp=CAU&ec=48665699" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Bill gates</span>
+                        <span class="msg"> <span class="msgcont">Hi Nicely done</span> </span>
+                    </div>
+                    <span class="msg-time">8:24 pm</span>
+                </div>
+                <div class="box chat-box">
+                    <img src="data:image/jpeg;base64,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" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Sundar pichai</span>
+                        <span class="msg"> <span class="msgcont">Hi. come to google?</span> </span>
+                    </div>
+                    <span class="msg-time">10:00 pm</span>
+                </div>
+                <div class="box chat-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTlvuKY8yJL1vfqUMNEwRp_BSjpq6diQbh0nFZhfvjxw&usqp=CAU&ec=48665699" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Mark zuckerberg</span>
+                        <span class="msg"> <span class="msgcont">Hi</span> </span>
+                    </div>
+                    <span class="msg-time">10:31 pm</span>
+                </div>
+                <div class="encryption-msg">
+                    <i class="fa-solid fa-lock fa-xs" style="color: #636363;"></i>
+                    <span>&nbsp Your personal messages are <span class="green">end-to-end encrypted</span></span>
+                </div>
+            </div>
+            <div class="view" id="status">
+
+                <div class="box status-box" id="ur-status">
+                    <div id="add-status-holder">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgUYchabDo921pRc_YkbC7QynGB2JHhuz8NA&usqp=CAU" class="prof"/>
+                    <div id="add-status">+</div>
+                </div>
+                    <div class="nm-wrap">
+                        <span class="name">My status</span>
+                        <span class="msg"> <span class="msgcont">Tap to add status updates</span> </span>
+                    </div>
+                </div>
+                <div class="txt-status">
+                    Recent updates
+                </div>
+                <div class="box status-box recent">
+                    <div class="status-prof-border"></div>
+                    <img src="https://www.theportugalnews.com/uploads/news/Cristiano_Ronaldo_2018__cropped_.jpg" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Ronaldo</span>
+                        <span class="msg"> <span class="msgcont">20 minutes ago</span> </span>
+                    </div>
+                </div>
+                <div class="box status-box recent">
+                    <div class="status-prof-border"></div>
+                    <img src="https://i.pinimg.com/474x/8a/ee/42/8aee4246ebb7f4f231b66053184d7c01.jpg" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">De villiers</span>
+                        <span class="msg"> <span class="msgcont">40 minutes ago</span> </span>
+                    </div>
+                </div>
+                <div class="txt-status">
+                    Viewed updates
+                </div>
+                <div class="box status-box viewed">
+                    <div class="status-prof-border"></div>
+                    <img src="https://i.pinimg.com/474x/9e/16/72/9e1672a073dad608b11386d2755614e0.jpg" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Elon musk</span>
+                        <span class="msg"> <span class="msgcont">Today, 10:30 am</span> </span>
+                    </div>
+                </div>
+                <div class="box status-box viewed">
+                    <div class="status-prof-border"></div>
+                    <img src="https://thumbs.dreamstime.com/b/roger-federer-centre-court-wimbledon-playing-winning-roger-federerl-wimbledon-152934699.jpg" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Roger federer</span>
+                        <span class="msg"> <span class="msgcont">Yesterday, 11:30 pm</span> </span>
+                    </div>
+                </div>
+                <div class="encryption-msg">
+                    <i class="fa-solid fa-lock fa-xs" style="color: #636363;"></i>
+                    <span>&nbsp Your status updates are <span class="green">end-to-end encrypted</span></span>
+                </div>
+
+            </div>
+            <div class="view" id="call">
+
+                <div class="box call-box" id="call-link">
+                    <span class="prof"><span class="material-icons-round icon-link">link</span></span>
+                    <div class="nm-wrap">
+                        <span class="name">Create call link</span>
+                        <span class="msg"> <span class="msgcont msg-wrap">Share a link for your WhatsApp call</span> </span>
+                    </div>
+                </div>
+
+                <div class="txt-status">
+                    Recent
+                </div>
+
+                <div class="box call-box">
+                    <img src="data:image/jpeg;base64,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" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Sundar pichai</span>
+                        <span class="msg">
+                            <span class="material-icons call-arr">call_made</span>
+                            <span class="msgcont">Yesterday, 5:30 pm</span>
+                        </span>
+                    </div>
+                    <span class="material-icons ic-call">call</span>
+                </div>
+                <div class="box call-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTlvuKY8yJL1vfqUMNEwRp_BSjpq6diQbh0nFZhfvjxw&usqp=CAU&ec=48665699" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Mark zuckerberg</span>
+                        <span class="msg">
+                            <span class="material-icons call-arr red-arr">call_received</span>
+                            <span class="msgcont">July 2, 6:00 pm</span>
+                        </span>
+                    </div>
+                    <span class="material-icons ic-call">call</span>
+                </div>
+                <div class="box call-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSXYTroIPD4qJZ-5N8Te8jNj2iGTh2I7GblV1-Wvczzg&usqp=CAU&ec=48665699" class="prof"/>
+                    <div class="nm-wrap">
+                        <span class="name">Bill gates</span>
+                        <span class="msg">
+                            <span class="material-icons call-arr">call_made</span>
+                            <span class="msgcont">June 3, 9:00 am</span>
+                        </span>
+                    </div>
+                    <span class="material-icons ic-call">call</span>
+                </div>
+                <div class="encryption-msg">
+                    <i class="fa-solid fa-lock fa-xs" style="color: #636363;"></i>
+                    <span>&nbsp Your personal calls are <span class="green">end-to-end encrypted</span></span>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div id="more-chat" class="fixed bottom"></div>
+            <div id="more-status" class="fixed bottom"></div>
+            <div id="more-call" class="fixed bottom"></div>
+            <div id="edit" class="fixed"></div>
+        </footer>
+    </div>
+
+    <!-- -----chat screen------ -->
+
+    <div id="chat-wrapper">
+
+        <section class="top">
+            <div class="top-left">
+                <span class="material-icons-round icon-back" onclick="hideChatScreen()">arrow_back</span>
+                <img src="https://www.theportugalnews.com/uploads/news/Cristiano_Ronaldo_2018__cropped_.jpg" alt="" />
+                <div class="contact">
+                    <p class="contact-name">Jawa</p>
+                    <p class="last-seen">online</p>
+                </div>
+            </div>
+            <div class="top-right">
+                <span class="material-icons-round icon">videocam</span>
+                <span class="material-icons-round icon">call</span>
+                <span class="material-icons-round icon">more_vert</span>
+            </div>
+        </section>
+
+
+        <!------------------------------------>
+
+        <div id="chat-holder">
+
+            <div class="encryption-msg">
+                <p><i class="fa-solid fa-lock fa-xs" style="color: #636363;"></i>&nbsp&nbspMessages to yourself are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Tap to learn more.</p>
+            </div>
+
+            <div class="message-date">
+                <span>6 June 2023</span>
+            </div>
+
+            <div class="msg right first-msg">
+                <span class="msg-content">Hi</span>
+                <div class="time-seen">
+                    <span class="time">10:14&nbsppm</span>
+                    <span class="material-icons-round icon-seen">done_all</span>
+                </div>
+            </div>
+
+            <div id="last-msg" class="msg left first-msg">
+                <span class="msg-content">Hi</span>
+                <div class="time-seen">
+                    <span class="time">10:15 pm</span>
+                    <span class="material-icons-round icon-seen">done_all</span>
+                </div>
+            </div>
+
+        <!------------------------------------>
+
+            <footer>
+                <div id="textfield">
+                    <span class="material-icons-outlined icon-smiley">sentiment_satisfied_alt</span>
+                    <input id="msgfield" type="text" placeholder="Message" size="15" spellcheck="false" autocomplete="off" oninput="textfieldChanged()"/>
+                    <!-- <textarea name="" id="" cols="20" rows="1"></textarea> -->
+                    <span class="material-icons-round icon-attach">attach_file</span>
+                    <span class="material-icons-round icon-payment">paid</span>
+                    <span class="material-icons-round icon-camera">camera_alt</span>
+                </div>
+                <div id="mic-holder">
+                    <span id="mic" class="material-icons-round icon-mic" onclick="sendMessage()">mic</span>
+                </div>
+            </footer>
+
+        </div>
+
+    </div>
+
+    <!-- -----------status screen-------------- -->
+
+    <div id="status-wrapper">
+
+        <div id="statusProgress">
+            <div id="statusBar"></div>
+          </div>
+
+        <section class="top">
+            <div class="top-left">
+                <span class="material-icons-round icon-back" onclick="hideStatusScreen()">arrow_back</span>
+                <img src="https://www.theportugalnews.com/uploads/news/Cristiano_Ronaldo_2018__cropped_.jpg" alt="" />
+                <div class="contact">
+                    <p class="name">Jawa</p>
+                    <p class="last-seen">Today 1:44 pm</p>
+                </div>
+            </div>
+            <div class="top-right">
+                <span class="material-icons-round icon">more_vert</span>
+            </div>
+        </section>
+
+        <img src="https://www.theportugalnews.com/uploads/news/Cristiano_Ronaldo_2018__cropped_.jpg" class="status-img" alt="">
+
+        <div class="reply">
+            <span class="material-icons-outlined icon-expand">expand_less</span>
+            <span>Reply</span>
+        </div>
+</div>
+
+
+<!-- ------------call screen-------------- -->
+
+<div id="call-wrapper">
+    <div class="encryption-msg">
+        <i class="fa-solid fa-lock fa-sm" style="color: #636363;"></i>
+        <span>&nbspEnd-to-end encrypted</span>
+    </div>
+    <img src="https://www.theportugalnews.com/uploads/news/Cristiano_Ronaldo_2018__cropped_.jpg" class="profile"
+        alt="">
+    <h2>Jawa</h2>
+    <p>calling</p>
+
+    <div class="bottom">
+        <span class="material-icons-outlined icon-expand">expand_less</span>
+        <div class="call-icons-holder">
+            <span class="material-icons-round">volume_up</span>
+            <span class="material-icons-round icon-video-call">videocam</span>
+            <span class="material-icons-round">mic_off</span>
+            <span class="material-icons-round icon-call-end" onclick="hideCallScreen()">call_end</span>
+        </div>
+    </div>
+</div>
+
+<!-- -------------------------------- -->
+
+<div id="popup">
+    Tap&nbsp&nbsp<span class="material-icons-round icon-back">arrow_back</span>&nbsp&nbsp to send back
+</div>
+
+<!-- ----------------------------------- -->
+<script type="text/javascript">
+    var viewHolder, view, halfScreen;
+var moreChat, moreStatus, moreEdit, moreCall;
+var greenColor = "white", headingColor = "rgb(171, 213, 205)";
+var clickedView, mainScreen, chatScreen, statusScreen, callScreen, chatHolder;
+var isFirstMsg = true;
+var statusTimer, statusBar, statusInterval = 0;
+var chatViewShowing = true, statusViewShowing = false, callViewShowing = false;
+
+// popup has to shown only one time for every screen. After one time shown, all these variable are set to false
+
+var popup, popupChat = true, popupStatus = true, popupCall = true;
+
+
+window.onload = function () {
+    initializeElements();
+    addScrollEvent();
+    addViewClickEvent();
+}
+
+
+function initializeElements() {
+
+    moreChat = document.getElementById("more-chat");
+    moreStatus = document.getElementById("more-status");
+    moreEdit = document.getElementById("edit");
+    moreCall = document.getElementById("more-call");
+    viewHolder = document.querySelector("#view-holder");
+    view = document.querySelector("#chat");
+    statusBar = document.getElementById("statusBar");
+    popup = document.getElementById("popup");
+
+    mainScreen = document.getElementById("wrapper");
+    chatScreen = document.getElementById("chat-wrapper");
+    statusScreen = document.getElementById("status-wrapper");
+    callScreen = document.getElementById("call-wrapper");
+    chatHolder = document.getElementById("chat-holder");
+
+    halfScreen = view.clientWidth / 2;
+
+}
+
+function addScrollEvent() {
+
+    viewHolder.addEventListener("scroll", function () {
+        onScroll();
+    });
+
+}
+
+
+function onScroll() {
+
+    let pos = view.getBoundingClientRect().right;
+
+        if(pos > halfScreen){
+
+            // logic to show chatscreeen
+
+            if(chatViewShowing)
+            {
+                return;
+            }
+            else{
+                chatViewShowing = true;
+                statusViewShowing = false;
+                callViewShowing = false;
+            }
+
+        $("#headings span:nth-child(2)").css("color", greenColor);
+        $("#headings span:nth-child(3)").css("color", headingColor);
+        $("#headings span:nth-child(4)").css("color", headingColor);
+
+        moreChat.style.setProperty("visibility", "visible");
+        moreStatus.style.setProperty("visibility", "hidden");
+        moreEdit.style.setProperty("visibility", "hidden");
+        moreCall.style.setProperty("visibility", "hidden");
+
+    }
+        else if(pos < - halfScreen){
+
+            // logic to show statusScreen
+
+            if(statusViewShowing)
+            {
+                return;
+            }
+            else{
+                statusViewShowing = true;
+                chatViewShowing = false;
+                callViewShowing = false;
+            }
+
+        $("#headings span:nth-child(4)").css("color", greenColor);
+        $("#headings span:nth-child(2)").css("color", headingColor);
+        $("#headings span:nth-child(3)").css("color", headingColor);
+
+        moreChat.style.setProperty("visibility", "hidden");
+        moreStatus.style.setProperty("visibility", "hidden");
+        moreEdit.style.setProperty("visibility", "hidden");
+        moreCall.style.setProperty("visibility", "visible");
+
+    }
+    else{
+
+       // logic to show callScreen
+
+       if(callViewShowing)
+       {
+           return;
+       }
+       else{
+            callViewShowing = true;
+           statusViewShowing = false;
+           chatViewShowing = false;
+       }
+
+        $("#headings span:nth-child(3)").css("color", greenColor);
+        $("#headings span:nth-child(2)").css("color", headingColor);
+        $("#headings span:nth-child(4)").css("color", headingColor);
+
+        moreChat.style.setProperty("visibility", "hidden");
+        moreStatus.style.setProperty("visibility", "visible");
+        moreEdit.style.setProperty("visibility", "visible");
+        moreCall.style.setProperty("visibility", "hidden");
+    }
+
+
+    /*
+
+    statusShown, callShown, chatShown
+
+    if pos > half screen
+    view chat
+
+    else if pos < -half screen
+    view call
+    
+    else 
+    view status
+
+    */
+}
+
+function addViewClickEvent() {
+    viewHolder.addEventListener("click", function (event) {
+        let src = event.target;
+        let classes = src.classList;
+
+        if (classes.contains("msgcont") || classes.contains("call-arr")) {
+            //parent.parent.parent
+            clickedView = src.parentElement.parentElement.parentElement;
+        }
+        else if (classes.contains("name") || classes.contains("msg")) {
+            //parent.parent
+            clickedView = src.parentElement.parentElement;
+        }
+        else if (classes.contains("nm-wrap") || classes.contains("msg-time") || classes.contains("prof") || classes.contains("status-prof-border") || classes.contains("ic-call")) {
+            //parent
+            clickedView = src.parentElement;
+        }
+        else if (classes.contains("box")) {
+            //itself
+            clickedView = src;
+        }
+        else {
+            return;
+        }
+
+        let screen = clickedView.parentElement.id;
+        if (screen == "chat") {
+            showChatScreeen();
+        }
+        else if (screen == "status") {
+            showStatusScreen();
+        }
+        else {
+            showCallScreen();
+        }
+    });
+}
+
+function showChatScreeen() {
+    let imgSrc = clickedView.querySelector(".prof").src;
+    let contactName = clickedView.querySelector(".nm-wrap .name").innerText;
+    let msgTime = clickedView.querySelector(".msg-time").innerText;
+    let lastMsg = clickedView.querySelector(".nm-wrap .msg .msgcont").innerText;
+
+    chatScreen.querySelector(".top .top-left img").src = imgSrc;
+    chatScreen.querySelector(".top .top-left .contact .contact-name").innerText = contactName;
+    chatScreen.querySelector("#last-msg .msg-content").innerText = lastMsg;
+    chatScreen.querySelector("#last-msg .time-seen .time").innerText = msgTime;
+
+    mainScreen.style.display = "none";
+    chatScreen.style.display = "block";
+
+    if(popupChat == true)
+    {
+    showPopup("arrow_back");
+    popupChat = false;
+    }
+}
+
+function showStatusScreen() {
+    let imgSrc = clickedView.querySelector(".prof").src;
+    let contactName = clickedView.querySelector(".nm-wrap .name").innerText;
+    let statusTime = clickedView.querySelector(".nm-wrap .msg .msgcont").innerText;
+
+    statusScreen.querySelector(".top .top-left img").src = imgSrc;
+    statusScreen.querySelector(".top .top-left .contact .name").innerText = contactName;
+    statusScreen.querySelector(".top .top-left .contact .last-seen").innerText = statusTime;
+    statusScreen.querySelector(".status-img").src = imgSrc;
+
+    mainScreen.style.display = "none";
+    statusScreen.style.display = "block";
+    statusBarMove();
+
+    if(popupStatus == true)
+    {
+    showPopup("arrow_back");
+    popupStatus = false;
+    }
+}
+
+function showCallScreen() {
+    if (clickedView.id == "call-link")
+        return;
+
+    let imgSrc = clickedView.querySelector(".prof").src;
+    let contactName = clickedView.querySelector(".nm-wrap .name").innerText;
+
+    callScreen.querySelector("img").src = imgSrc;
+    callScreen.querySelector("h2").innerText = contactName;
+
+    mainScreen.style.display = "none";
+    callScreen.style.display = "flex";
+
+    if(popupCall == true)
+    {
+    showPopup("call_end");
+    popupCall = false;
+    }
+}
+
+function hideChatScreen() {
+    mainScreen.style.display = "block";
+    chatScreen.style.display = "none";
+    document.getElementById("mic").innerText = "mic";
+    document.getElementById("msgfield").value = "";
+    // clearChat();
+}
+
+function hideStatusScreen() {
+    mainScreen.style.display = "block";
+    statusScreen.style.display = "none";
+
+    statusBarWidth = 0;
+    clearInterval(statusTimer);
+    statusBar.style.width = 0 + "%";
+    statusInterval = 0;
+}
+
+function hideCallScreen() {
+    mainScreen.style.display = "block";
+    callScreen.style.display = "none";
+}
+
+// -------------Logic to send message-----------
+
+function textfieldChanged() {
+    if (document.getElementById("msgfield").value.trim() == "") {
+        changeMicIcon();
+        return;
+    }
+
+    document.getElementById("mic").innerText = "send";
+}
+
+function changeMicIcon() {
+    document.getElementById("mic").innerText = "mic";
+}
+
+function sendMessage() {
+
+    // here we are creating msg element
+
+    if (document.getElementById("mic").innerText == "mic") {
+        return;
+    }
+
+    let msgText = document.getElementById("msgfield").value;
+
+    let msg = document.createElement("div");
+    msg.classList.add("msg", "right");
+
+    // Logic for creating and testing msg sending time
+
+    let d = new Date();
+    let hour = d.getHours();
+    let meridian = (hour <= 12) ? "am" : "pm";
+    let minutes = d.getMinutes();
+    minutes = minutes < 10 ? (")" + minutes) : minutes;
+    hour = (hour <= 12) ? hour : (d.getHours() - 12);
+    if(hour == 0)
+    hour = 12;
+
+    // --------------------------------
+
+    msg.innerHTML = "<span class='msg-content'>" + msgText + "</span>" + "<div class='time-seen'><span class='time'>" + hour + ":" + d.getMinutes() + " " + meridian + " " + "</span>" + "<span class='material-icons-round icon-seen'>done_all</span></div>";
+    chatHolder.appendChild(msg);
+
+    document.getElementById("msgfield").value = "";
+    changeMicIcon();
+
+}
+
+function statusBarMove() {
+
+    if (statusInterval == 0) {
+        statusInterval = 1;
+        statusBarWidth = 1;
+        statusTimer = setInterval(runStatus, 40);
+         function runStatus() {
+            if (statusBarWidth >= 100) {
+                hideStatusScreen();
+                statusInterval = 0;
+            } else {
+                statusBarWidth++;
+                statusBar.style.width = statusBarWidth + "%";
+            }
+        }
+
+    }
+}
+
+function showPopup(popupContent)
+{
+    popup.querySelector(".icon-back").innerText = popupContent;
+
+    popup.style.visibility = "visible";
+
+    setTimeout(function(){
+        popup.style.visibility = "hidden";
+    }, 2000)
+}
+
+
+// ---------------we have the bug in this function. Messages are not deleted correctly and this is not used in the project------------
+
+function clearChat() {
+
+    // ----------Deleting user sent messages-----------
+
+    let allMessages = chatHolder.children;
+    console.log("messages length ", allMessages.length);
+
+    for (let i = 0; i < allMessages.length; i++) {
+
+        if (i > 3) {
+            
+        console.log("Removed" + allMessages[i].innerHTML);
+        console.log("delted", i);
+            chatHolder.remove(allMessages[i]);
+        }
+
+        // console.log(i," ", allMessages[i]);
+    }
+}
+
+</script>
+</body>
+</html>
