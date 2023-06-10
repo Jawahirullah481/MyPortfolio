@@ -6,5 +6,12 @@
         "sourceCodeLink": "https://github.com/Jawahirullah481/Calculator",
         "projectPageLink": "calculator.html",
         "priority": 1
+    },
+    {
+        "name": "WhatsApp UI Clone",
+        "language": "html, css, js",
+        "image": "https://free.toppng.com/free-image/whatsapp-icon-whatsapp-whatsapp-icon-whatsapp-whatsapp-PNG-free-PNG-Images_129078",
+        "projectPageLink": "whatsappUIClone.html",
+        "priority": 2
     }
 ]
