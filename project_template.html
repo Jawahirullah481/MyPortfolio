@@ -43,7 +43,7 @@
             More Projects
             <i class="fa-solid fa-xmark fa-xl" onclick="closeProjects()"></i>
         </div>
-     <!-- -------------------------- -->
+     <!-- ----------------------------------------------- -->
 
     </div>
 
@@ -52,37 +52,63 @@
 
             <!------------ Your content goes here ----------->
 
-            <!-- 
-                1. All the content are separated in section tag
-                2. starts with one h1 tag
-                3. each section contains h2 tags
-                4. Name project main image as "projectnameinlowercasewithoutanysymbolsmain",
-                         and preview image as "projectnameinlowercasewithoutanysumbols1(number for every image in each project)"
-                5. Use code tag for github clone
-                6. syntax for preview
-
-                <div id="preview-wrapper">
+            <h1>Project Name</h1>
+            <p class="output-link"><span>To view output</span><a href="https://jawahirullah481.github.io/MyPortfolio/projects/filename.html">click here</a></p>
+            <section>
+            <h2>Intro</h2>
+            <p>Introduction about the project</p>
+        </section>
+        <section>
+            <h2>Preview</h2>
+            <div id="preview-wrapper">
                 <i id="preview-arrow-left" class="fa-solid fa-caret-left preview-left" onclick="moveLeft()"></i>
         
                 <div id="preview-holder-one">
                     <div id="preview-holder-two">
                         <div class="img">
-                            <img src="../images/projects/image1name.png" alt="">
+                            <img src="../images/projects/image1name" alt="">
                         </div>
                         <div class="img">
-                            <img src="../images/projects/image2name.png" alt="">
+                            <img src="../images/projects/image2name" alt="">
                         </div>
                         <div class="img">
-                            <img src="../images/projects/image3name.png" alt="">
+                            <img src="../images/projects/image3name" alt="">
                         </div>
                     </div>
                 </div>
                 <i id="preview-arrow-right" class="fa-solid fa-caret-right preview-left" onclick="moveRight()"></i>
         
             </div>
-            -->
-            <!-- ---------------------------------- -->
-           
+        </section>
+        <section class="technologies">
+            <h2>Technologies used</h2>
+            <ul>
+                <li>Technology 1</li>
+                <li>Technology 2</li>
+            </ul>
+            </section>
+            <section>
+                <h2>Features</h2>
+                <ul class="para">
+                    <li>Feature</li>
+                    <div class="img-holder">
+                        <img src="../images/projects/imagename1.png" alt="">
+                    </div>
+                    <li>Feature</li>
+                    <li>Feature</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Getting started</h2>
+                <p>To get started, clone this repository to your local machine and open the project in your favorite IDE that supports JavaFX.</p>
+                <code>git clone github_clone_link</code>
+            </section>
+            <section>
+                <h2>How to Run</h2>
+                <p>Run the <b>file_name.extension</b> file in the <b>Folder_name</b> folder to start the application.</p>
+                <!-- ------or---------- -->
+                <a href="" class="btn view-output">view output</a>
+            </section>
         </div>
 
         <footer>
