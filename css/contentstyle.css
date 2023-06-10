@@ -219,6 +219,7 @@ code::-webkit-scrollbar{
     width: fit-content;
     text-decoration: none;
     text-shadow: none;
+    border-radius: 5px;
 }
 
 .view-output:hover{
