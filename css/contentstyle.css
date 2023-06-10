@@ -43,10 +43,11 @@ section p{
 
 section ul li{
     list-style-position: inside;
-    padding-left: 20px;
+    padding-left: 0px;
+    text-indent: 20px;
     display: block;
     list-style-type: none;
-    position: relative;
+    position: relative;    
 }
 
 section ul li::before{
