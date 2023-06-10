@@ -22,11 +22,9 @@ function closeMenu()
 function showProjects()
 {
     projectmenu.style.visibility = "visible";
-    projectmenu.style.left = "0";
 }
 
 function closeProjects()
 {
     projectmenu.style.visibility = "hidden";
-    projectmenu.style.left = "-100%";
 }
