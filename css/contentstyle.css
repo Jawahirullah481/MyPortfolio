@@ -18,6 +18,14 @@ h1{
     color:rgb(87, 54, 189);
 }
 
+.output-link{
+    margin-bottom: 25px;
+}
+
+a{
+    color: blue;
+}
+
 section{
     margin-bottom: 40px;
 }
@@ -43,11 +51,11 @@ section p{
 
 section ul li{
     list-style-position: inside;
-    padding-left: 0px;
-    text-indent: 20px;
     display: block;
     list-style-type: none;
-    position: relative;    
+    position: relative;
+    padding-left: 0;
+    text-indent: 20px;
 }
 
 section ul li::before{
@@ -66,6 +74,15 @@ section ul li:not(:last-child)
 {
     margin-bottom: .85em;
 }
+
+.technologies{
+    margin-bottom: 35px;
+}
+
+.technologies li{
+    height: 24px;
+}
+
 
 code{
     padding: 10px 15px;
@@ -172,20 +189,60 @@ code::-webkit-scrollbar{
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     border-radius: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
 }
 
+.img-holder{
+    width: 500px;
+    max-width: 100%;
+    height: 45vh;
+    max-height: 300px;
+    background-color: rgba(13, 8, 69, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px 0;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, .35);
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.img-holder img{
+    height: 90%;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .25);
+}
+
+.view-output{
+    display: block;
+    margin: 25px auto;
+    width: fit-content;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+.view-output:hover{
+    background-color: rgb(255, 93, 34);
+}
+
+.output-link{
+    font-size: 18px;
+    position: relative;
+    background-color: bisque;
+    padding: 5px 10px;
+    width: fit-content;
+}
+
+.output-link a{
+    margin-left: 7px;
+}
 
 
 @media only screen and (max-width : 600px) {
     #holder{
-       padding-right: 15px !important;
-       padding-left: 15px !important;
-       padding-top: 20px !important;
+       padding-right: 20px !important;
+       padding-left: 20px !important;
     }
-    
-    section p, section ul li{
-        font-size:16px;
-     }
 
     #preview-wrapper{
         height: 35vh;
