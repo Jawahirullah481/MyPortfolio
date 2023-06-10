@@ -10,7 +10,8 @@
     {
         "name": "WhatsApp UI Clone",
         "language": "html, css, js",
-        "image": "https://free.toppng.com/free-image/whatsapp-icon-whatsapp-whatsapp-icon-whatsapp-whatsapp-PNG-free-PNG-Images_129078",
+        "image": "WhatsappUIClonemain.png",
+        "sourceCodeLink": "https://github.com/Jawahirullah481/WhatsappUIClone",
         "projectPageLink": "whatsappUIClone.html",
         "priority": 2
     }
