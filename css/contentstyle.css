@@ -179,6 +179,7 @@ code::-webkit-scrollbar{
     #holder{
        padding-right: 15px !important;
        padding-left: 15px !important;
+       padding-top: 20px !important;
     }
     
     section p, section ul li{
