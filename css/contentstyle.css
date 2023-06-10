@@ -177,9 +177,13 @@ code::-webkit-scrollbar{
 
 @media only screen and (max-width : 600px) {
     #holder{
-       padding-right: 17px !important;
-       padding-left: 17px !important;
+       padding-right: 15px !important;
+       padding-left: 15px !important;
     }
+    
+    section p, section ul li{
+        font-size:16px;
+     }
 
     #preview-wrapper{
         height: 35vh;
