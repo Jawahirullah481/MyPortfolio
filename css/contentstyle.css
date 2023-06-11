@@ -232,6 +232,8 @@ code::-webkit-scrollbar{
     background-color: bisque;
     padding: 5px 10px;
     width: fit-content;
+    border-left: 5px solid red;
+    border-radius: 5px;
 }
 
 .output-link a{
@@ -246,7 +248,8 @@ code::-webkit-scrollbar{
     }
 
     #preview-wrapper{
-        height: 35vh;
+        height: 50vh;
+        min-height: 350px;
         width: 100%;
         min-width: 100%;
         max-width: 100%;
