@@ -43,7 +43,7 @@
 
 #sidebar-title .fa-xmark{
     position: absolute;
-    right: 10px;
+    right: 12px;
 }
 
 #sidebar .view{
@@ -172,10 +172,6 @@ nav .fa-list-ul{
         width: calc(100% - 62.5px);
         font-size: 18px;
         font-weight: 500;
-    }
-
-    #sidebar .fa-xmark{
-        visibility: visible;
     }
 
 }
