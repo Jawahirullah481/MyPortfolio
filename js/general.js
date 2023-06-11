@@ -1,4 +1,4 @@
-var header, projectmenu;
+var header, projectmenu, iconCloseProjects;
 
 window.addEventListener("load", function(){
     header = document.getElementById("header");
