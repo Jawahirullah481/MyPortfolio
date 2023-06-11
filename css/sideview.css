@@ -114,8 +114,8 @@ nav .fa-list-ul{
 
 @media only screen and (max-width : 600px){
     #sidebar{
-        width: 85vw;
-        max-width: 290px;
+        width: 90vw;
+        max-width: 310px;
         position: fixed;
         top: 0;
         left:0;
