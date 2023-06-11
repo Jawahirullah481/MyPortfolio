@@ -248,8 +248,8 @@ code::-webkit-scrollbar{
     }
 
     #preview-wrapper{
-        height: 50vh;
-        min-height: 350px;
+        height: 45vh;
+        min-height: 300px;
         width: 100%;
         min-width: 100%;
         max-width: 100%;
