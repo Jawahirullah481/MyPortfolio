@@ -44,14 +44,7 @@
 #sidebar-title .fa-xmark{
     position: absolute;
     right: 12px;
-}
-
-#sidebar .view{
-    width: 95%;
-    margin: 5px auto;
-
-    /* width: 100%;
-    margin: 2px auto; */
+    visibility: hidden;
 }
 
 #sidebar .view{
@@ -60,7 +53,7 @@
     height: 48px;
     background-color: #D2D2F9;
     position: relative;
-    margin-bottom: 5px;
+    margin: 5px auto;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.292);
 }
 
@@ -71,7 +64,6 @@
     left: 0;
     top: 0;
     box-sizing: content-box;
-    background-color: white;
     background-position: center;
     background-repeat: no-repeat;
     background-color: rgb(246, 246, 255);
@@ -108,23 +100,6 @@
     color: rgb(85, 71, 71);
 }
 
-
-
-#sidebar .fa-xmark{
-    position: absolute;
-    z-index: 2;
-    right: 20px;
-    top: 30px;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    color: rgb(116, 116, 212);
-    visibility: hidden;
-}
-
-
 nav .fa-list-ul{
     position: absolute;
     top: 50%;
@@ -139,7 +114,7 @@ nav .fa-list-ul{
 
 @media only screen and (max-width : 600px){
     #sidebar{
-        width: 75vw;
+        width: 85vw;
         max-width: 290px;
         position: fixed;
         top: 0;
@@ -172,6 +147,10 @@ nav .fa-list-ul{
         width: calc(100% - 62.5px);
         font-size: 18px;
         font-weight: 500;
+    }
+    
+    #sidebar .fa-xmark{
+        visibility: visible;
     }
 
 }
