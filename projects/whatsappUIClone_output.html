@@ -1590,7 +1590,7 @@ function sendMessage() {
     let hour = d.getHours();
     let meridian = (hour <= 12) ? "am" : "pm";
     let minutes = d.getMinutes();
-    minutes = minutes < 10 ? (")" + minutes) : minutes;
+    minutes = minutes < 10 ? ("0" + minutes) : minutes;
     hour = (hour <= 12) ? hour : (d.getHours() - 12);
     if(hour == 0)
     hour = 12;
