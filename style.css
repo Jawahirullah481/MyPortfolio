@@ -445,7 +445,7 @@ section:nth-child(2n) {
 
 
 #about .about-content-holder p {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 170%;
     color: #313131;
@@ -1116,6 +1116,10 @@ footer div i:hover, footer div a:hover{
         max-width: 100%;
     }
 
+    #about .content-wrapper .about-content-holder p {
+        font-size: 18px;
+    }
+
     /* --------- Skills ------------ */
 
     #skills {
@@ -1213,8 +1217,3 @@ footer div i:hover, footer div a:hover{
     }
 
 }
-
-@media only screen and (max-width: 545px) {
-
-}
-
