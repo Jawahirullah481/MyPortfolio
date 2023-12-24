@@ -285,7 +285,8 @@ nav .fa-bars {
     padding: 5px 18px;
     text-align: center;
     border-radius: 5px;
-    font-size: 17px;
+    font-size: 18px;
+    font-weight: 500;
     color: white;
     border: none;
     outline: none;
@@ -997,7 +998,7 @@ footer div p,
 footer div i,
 footer div a {
     color: #B6AAAA;
-    font-size: 16.5px;
+    font-size: 17px;
     margin-bottom: 6px;
 }
 
@@ -1063,7 +1064,7 @@ footer div a:hover {
     header .logo {
         flex-grow: 0;
         margin-bottom: 35px;
-        font-size: 40px;
+        font-size: 32px;
         text-align: center;
         color: rgb(208, 228, 250);
         display: none;
@@ -1091,16 +1092,11 @@ footer div a:hover {
 
     header .menu li a {
         width: 100%;
-        padding: 17px 0;
+        padding: 15px 0;
         height: 100%;
         display: block;
         color: white;
         text-align: center;
-    }
-
-    header .resume-btn {
-        font-size: 20px;
-        padding: 8px 25px;
     }
 
     nav {
