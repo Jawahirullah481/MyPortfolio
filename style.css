@@ -121,7 +121,7 @@ body {
 /* ----------- Header ------------ */
 
 
-header{
+header {
     width: 100vw;
     height: 55px;
     display: flex;
@@ -150,7 +150,7 @@ header .logo {
     flex-grow: 3;
 }
 
-header i{
+header i {
     position: absolute;
     top: 35px;
     right: 35px;
@@ -158,12 +158,12 @@ header i{
     visibility: hidden;
 }
 
-header i:hover{
+header i:hover {
     color: rgb(237, 237, 237);
 }
 
 
-.menu{
+.menu {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -172,24 +172,25 @@ header i:hover{
     flex-grow: 1;
 }
 
-.menu li{
+.menu li {
     display: inline-block;
     white-space: nowrap;
     position: relative;
     font-size: 15px;
     font-weight: 600;
-    color:rgba(18, 28, 53, 1);
+    color: rgba(18, 28, 53, 1);
     font-weight: 500;
 }
 
 
-header .menu li a{
+header .menu li a {
     text-decoration: none;
     color: #4848a6;
 }
 
 .header-bg {
-    background-color: rgb(250, 251, 251);;
+    background-color: rgb(250, 251, 251);
+    ;
     box-shadow: 0 4px 8px rgba(0, 0, 0, .25);
 }
 
@@ -201,7 +202,7 @@ header .menu li a{
     top: 0;
 }
 
-.menu li::after{
+.menu li::after {
     content: '';
     display: inline-block;
     width: 0px;
@@ -217,22 +218,22 @@ header .menu li a{
     -ms-transform: translateX(-50%);
     bottom: 0;
     transition: width 0.25s;
-    -webkit-transition:  width 0.25s;
-    -moz-transition:  width 0.25s;
-    -o-transition:  width 0.25s;
+    -webkit-transition: width 0.25s;
+    -moz-transition: width 0.25s;
+    -o-transition: width 0.25s;
 }
 
-.menu li:hover::after{
+.menu li:hover::after {
     width: 100%;
 }
 
 
 .resume-btn {
-    font-size: 14px;    
+    font-size: 15px;
     padding: 3px 15px;
 }
 
-nav{
+nav {
     width: 100%;
     height: 48px;
     position: fixed;
@@ -254,7 +255,7 @@ nav .logo {
     width: 100%;
 }
 
-nav .fa-bars{
+nav .fa-bars {
     position: absolute;
     right: 20px;
     top: 50%;
@@ -296,6 +297,7 @@ nav .fa-bars{
     z-index: 1;
     border: 2px solid #FF3636;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 
@@ -943,7 +945,7 @@ section:nth-child(2n) {
 /* ---------- Footer ----------------- */
 
 
-footer{
+footer {
     width: 100%;
     height: auto;
     background-color: rgb(20, 20, 102);
@@ -956,15 +958,15 @@ footer{
     padding: 25px 5px;
 }
 
-footer div{
+footer div {
     width: fit-content;
     margin: 13px 30px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;    
+    align-items: flex-start;
 }
 
-footer div h4{
+footer div h4 {
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 0.025rem;
@@ -982,7 +984,7 @@ footer .footer-icon-holder {
     margin: 0;
 }
 
-footer div a:not(.icon){
+footer div a:not(.icon) {
     display: block;
     text-decoration: none;
     display: flex;
@@ -991,13 +993,16 @@ footer div a:not(.icon){
 }
 
 
-footer div p, footer div i, footer div a{
+footer div p,
+footer div i,
+footer div a {
     color: #B6AAAA;
     font-size: 16.5px;
     margin-bottom: 6px;
 }
 
-footer div i:hover, footer div a:hover{
+footer div i:hover,
+footer div a:hover {
     color: orange;
 }
 
@@ -1010,7 +1015,7 @@ footer div i:hover, footer div a:hover{
     .pt-1 {
         padding-top: 0px;
     }
-    
+
     .pt-2 {
         padding-top: 0px;
     }
@@ -1024,14 +1029,18 @@ footer div i:hover, footer div a:hover{
         margin-bottom: 25px;
     }
 
-    #skills, #projects-holder, #contact, #courses, .project {
-        padding: 45px 15px;   
+    #skills,
+    #projects-holder,
+    #contact,
+    #courses,
+    .project {
+        padding: 45px 15px;
     }
 
     /* ---------- Header --------- */
 
-    
-    header{
+
+    header {
         background-color: rgba(20, 20, 120, .97);
         width: 100%;
         height: 100vh;
@@ -1043,11 +1052,11 @@ footer div i:hover, footer div a:hover{
         justify-content: center;
     }
 
-    header:hover{
+    header:hover {
         height: 100vh;
     }
 
-    header i{
+    header i {
         visibility: visible;
     }
 
@@ -1069,13 +1078,13 @@ footer div i:hover, footer div a:hover{
         padding: 0;
     }
 
-    header .menu li{
+    header .menu li {
         font-size: 22px;
         font-weight: 500;
         width: 100%;
     }
 
-    header .menu li::after{ 
+    header .menu li::after {
         bottom: 12px;
         background-color: white;
     }
@@ -1104,15 +1113,16 @@ footer div i:hover, footer div a:hover{
         padding: 55px 15px;
         height: fit-content;
         min-height: 100vh;
-    } 
-    
+    }
+
     #about .content-wrapper {
         flex-direction: column-reverse;
         width: 100%;
         row-gap: 30px;
     }
 
-    #about .content-wrapper .about-content-holder,     #about .content-wrapper .about-image-holder {
+    #about .content-wrapper .about-content-holder,
+    #about .content-wrapper .about-image-holder {
         max-width: 100%;
     }
 
@@ -1145,7 +1155,8 @@ footer div i:hover, footer div a:hover{
         padding-bottom: 50px !important;
     }
 
-    .project .content-wrapper, .project:nth-child(2n) .content-wrapper {
+    .project .content-wrapper,
+    .project:nth-child(2n) .content-wrapper {
         flex-direction: column-reverse;
         row-gap: 45px;
         margin-top: 35px;
@@ -1158,6 +1169,15 @@ footer div i:hover, footer div a:hover{
 
     .project:not(:nth-child(1)) {
         padding-top: 75px;
+    }
+
+    .project-details .tech-stacks .tech-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .project-details .tech-stacks .tech-icon img {
+        width: 70%;
     }
 
 
