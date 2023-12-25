@@ -1105,7 +1105,6 @@ footer div a:hover {
 }
 
 
-
 /* --------- Smaller screen styles ------------------- */
 
 @media only screen and (max-width: 769px) {
@@ -1312,7 +1311,7 @@ footer div a:hover {
 
     #contact {
         height: fit-content;
-        padding: 60px 0;
+        padding: 60px 20px;
     }
 
     #contact .content-wrapper {
@@ -1321,8 +1320,16 @@ footer div a:hover {
 
     .contact-form {
         width: 100%;
-        max-width: 300px;
+        max-width: 380px;
         margin: auto;
+    }
+
+    .contact-form label {
+        font-size: 17.5px;
+    }
+
+    .contact-form input, .contact-form textarea {
+        font-size: 16.5px;
     }
 
     /* -------- footer -------------- */
