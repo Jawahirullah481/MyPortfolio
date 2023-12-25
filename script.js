@@ -50,7 +50,7 @@ var CertificateSlider = new Swiper('.certificate-slider', {
     coverflowEffect: {
         rotate: 0,
         stretch: 0,
-        depth: 125,
+        depth: 145,
         scale: 1,
         modifier: 1.75,
         slideShadows: false

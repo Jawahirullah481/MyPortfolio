@@ -139,10 +139,30 @@ header {
     background-color: white;
 }
 
+header g svg {
+    height: 26px;
+    width: fit-content;
+}
+
+
+nav g svg {
+    position: absolute;
+    height: 40%;
+    width: max-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
 .logo {
     font-weight: 700;
     color: #4848a6;
     font-family: 'Open Sans', sans-serif;
+
 }
 
 header .logo {
@@ -189,8 +209,7 @@ header .menu li a {
 }
 
 .header-bg {
-    background-color: rgb(250, 251, 251);
-    ;
+    background-color: rgb(250, 251, 251);;
     box-shadow: 0 4px 8px rgba(0, 0, 0, .25);
 }
 
@@ -264,11 +283,83 @@ nav .fa-bars {
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
-}
+
+    color: rgb(20, 164, 77);
+} 
 
 .navbar-hide {
     top: -48px;
 }
+
+
+/* ------------ popup ------------------- */
+
+#popup{
+    width: max-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    border-left: 8px solid #1D1D1D;
+    box-shadow: 0px 0px 22px rgba(0, 0, 0, 0.35);
+    background-color: white;
+    z-index: 1;
+    padding: 0 20px 0 7px;
+    visibility: hidden;
+}
+
+#popup.success {
+    border-left-color: rgb(20, 164, 77);
+}
+
+#popup.failed {
+    border-left-color: red;
+}
+
+#popup #popup-content-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#popup #popup-content-holder h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #1D1D1D;
+    text-align: start;
+    line-height: 120%;
+}
+
+#popup #popup-content-holder p {
+    color: rgb(110, 114, 127);
+    font-size: 13px;
+    text-align: start;
+}
+
+#popup #popup-icon-holder {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* #popup #popup-icon-holder .icon-success, #popup #popup-icon-holder .icon-wrong {
+    width: 50px;
+} */
+
+/* #popup.success #popup-icon-holder{
+    color:rgb(20, 164, 77);
+}
+
+#popup.failed #popup-icon-holder {
+    color: red;
+} */
 
 
 /* --------- Common elements ----------------- */
@@ -282,11 +373,10 @@ nav .fa-bars {
 }
 
 .btn {
-    padding: 5px 18px;
+    padding: 3px 15px;
     text-align: center;
     border-radius: 5px;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 14px;
     color: white;
     border: none;
     outline: none;
@@ -404,7 +494,7 @@ section:nth-child(2n) {
     font-weight: 700;
     font-family: monospace, sans-serif;
     color: #7740FA;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .typewriter h2 {
@@ -788,6 +878,7 @@ section:nth-child(2n) {
     background: var(--bg-alternte-color);
     height: 100vh;
     max-height: 850px;
+    position: relative;
 }
 
 .contact-form {
@@ -811,6 +902,12 @@ section:nth-child(2n) {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+.contact-form #form-error-message {
+    color: red;
+    font-size: 12px;
+    text-align: center;
 }
 
 .contact-form .tf-holder {
@@ -852,7 +949,7 @@ section:nth-child(2n) {
 
 .contact-form .tf-holder textarea {
     padding: 5px 10px;
-    height: 80px;
+    height: 100px;
     resize: none;
 }
 
@@ -1021,6 +1118,11 @@ footer div a:hover {
         padding-top: 0px;
     }
 
+    .btn {
+        font-size: 18px;
+        padding: 5px 18px;
+    }
+
     #wrapper {
         padding: 0;
     }
@@ -1051,6 +1153,7 @@ footer div a:hover {
         flex-direction: column;
         -ms-flex-direction: column;
         justify-content: center;
+        padding-top: 10px;
     }
 
     header:hover {
@@ -1106,7 +1209,7 @@ footer div a:hover {
     /* ---------- about ------ */
 
     #about {
-        padding: 55px 15px;
+        padding: 70px 15px 55px 15px;
         height: fit-content;
         min-height: 100vh;
     }
@@ -1165,6 +1268,10 @@ footer div a:hover {
 
     .project:not(:nth-child(1)) {
         padding-top: 75px;
+    }
+
+    .project-details .tech-stacks-holder {
+        margin-bottom: 20px;
     }
 
     .project-details .tech-stacks .tech-icon {
