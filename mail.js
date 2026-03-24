@@ -27,7 +27,7 @@ function sendEmail() {
             message: message,
         };
 
-        emailjs.send("service_vhm177f", "template_zffrvcq", params)
+        emailjs.send("service_jrbehsl", "template_7hwxc2m", params)
             .then(res => {
                 console.log("mail sent...")
                 document.getElementById("name").value = "";
